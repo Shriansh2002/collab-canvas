@@ -1,10 +1,7 @@
 import { Navbar } from "./_components/navbar";
 import { OrgSidebar } from "./_components/org-sidebar";
+import { LayoutProps as DashboardLayoutProps } from "@/types";
 import { Sidebar } from "./_components/sidebar";
-
-interface DashboardLayoutProps {
-	children: React.ReactNode;
-}
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 	return (
