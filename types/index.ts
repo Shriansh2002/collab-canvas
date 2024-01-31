@@ -33,10 +33,38 @@ interface HintProps {
 	alignOffset?: number;
 }
 
+interface CanvasCardProps {
+	id: string;
+	title: string;
+	imageUrl: string;
+	authorId: string;
+	authorName: string;
+	createdAt: number;
+	orgId: string;
+	isFavorite: boolean;
+}
+
+interface FooterProps {
+	title: string;
+	authorLabel: string;
+	createdAtLabel: string;
+	isFavorite: boolean;
+	onClick: () => void;
+	disabled: boolean;
+}
+
+interface NewCanvasButtonProps {
+	orgId: string;
+	disabled?: boolean;
+}
+
 export type {
 	LayoutProps,
 	BoardListProps,
 	ItemProps,
 	HintProps,
 	DashboardPageProps,
+	CanvasCardProps,
+	FooterProps,
+	NewCanvasButtonProps,
 };
