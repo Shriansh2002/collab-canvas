@@ -1,3 +1,4 @@
+import { DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu";
 import React from "react";
 
 interface LayoutProps {
@@ -58,6 +59,22 @@ interface NewCanvasButtonProps {
 	disabled?: boolean;
 }
 
+interface ActionProps {
+	children: React.ReactNode;
+	side?: DropdownMenuContentProps["side"];
+	sideOffset?: DropdownMenuContentProps["sideOffset"];
+	id: string;
+	title: string;
+}
+
+interface ConfirmModalProps {
+	children: React.ReactNode;
+	onConfirm: () => void;
+	disabled?: boolean;
+	header: string;
+	description?: string;
+}
+
 export type {
 	LayoutProps,
 	BoardListProps,
@@ -67,4 +84,6 @@ export type {
 	CanvasCardProps,
 	FooterProps,
 	NewCanvasButtonProps,
+	ActionProps,
+	ConfirmModalProps,
 };
