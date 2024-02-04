@@ -17,6 +17,29 @@ export const get = query({
 			.order("desc")
 			.collect();
 
-		return canvases;
+		const canvasesWithFavoritesRelation = canvases.map(
+			(canvas) => {
+				return ctx.db
+					.query("userFavorites")
+					.withIndex("by_user_canvas", (q) =>
+						q
+							.eq("userId", identity.subject)
+							.eq("canvasId", canvas._id)
+					)
+					.unique()
+					.then((favorite) => {
+						return {
+							...canvas,
+							isFavorite: !!favorite,
+						};
+					});
+			}
+		);
+
+		const canvasesWithFavoritesBoolean = await Promise.all(
+			canvasesWithFavoritesRelation
+		);
+
+		return canvasesWithFavoritesBoolean;
 	},
 });

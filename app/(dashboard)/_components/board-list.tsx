@@ -62,7 +62,7 @@ const BoardList = ({ orgId, query }: BoardListProps) => {
 						authorName={canvas.authorName}
 						createdAt={canvas._creationTime}
 						orgId={canvas.orgId}
-						isFavorite={false}
+						isFavorite={canvas.isFavorite}
 					/>
 				))}
 			</div>

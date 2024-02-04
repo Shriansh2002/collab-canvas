@@ -12,6 +12,10 @@ import Footer from "./footer";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Actions } from "@/components/actions";
 
+import { useApiMutation } from "@/hooks/use-api-mutation";
+import { api } from "@/convex/_generated/api";
+import { toast } from "sonner";
+
 export const CanvasCard = ({
 	id,
 	title,
@@ -28,6 +32,23 @@ export const CanvasCard = ({
 	const createdAtLabel = formatDistanceToNow(createdAt, {
 		addSuffix: true,
 	});
+
+	const { mutate: onFavorite, pending: pendingFavorite } =
+		useApiMutation(api.canvas.favorite);
+	const { mutate: onUnfavorite, pending: pendingUnfavorite } =
+		useApiMutation(api.canvas.unfavorite);
+
+	const toggleFavorite = () => {
+		if (isFavorite) {
+			onUnfavorite({ id }).catch(() =>
+				toast.error("Failed to unfavorite")
+			);
+		} else {
+			onFavorite({ id, orgId }).catch(() =>
+				toast.error("Failed to favorite")
+			);
+		}
+	};
 
 	return (
 		<Link href={`/canvas/${id}`}>
@@ -52,8 +73,8 @@ export const CanvasCard = ({
 					title={title}
 					authorLabel={authorLabel}
 					createdAtLabel={createdAtLabel}
-					onClick={() => {}}
-					disabled={false}
+					onClick={toggleFavorite}
+					disabled={pendingFavorite || pendingUnfavorite}
 				/>
 			</div>
 		</Link>
