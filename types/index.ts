@@ -75,6 +75,14 @@ interface ConfirmModalProps {
 	description?: string;
 }
 
+interface CanvasProps {
+	canvasId: string;
+}
+
+interface CanvasIdPageProps {
+	params: CanvasProps;
+}
+
 export type {
 	LayoutProps,
 	BoardListProps,
@@ -86,4 +94,6 @@ export type {
 	NewCanvasButtonProps,
 	ActionProps,
 	ConfirmModalProps,
+	CanvasProps,
+	CanvasIdPageProps,
 };
