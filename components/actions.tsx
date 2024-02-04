@@ -8,12 +8,13 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Link2, Trash2 } from "lucide-react";
+import { Link2, Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { api } from "@/convex/_generated/api";
 import { ConfirmModal } from "./confirm-modal";
 import { Button } from "./ui/button";
+import { useRenameModal } from "@/store/use-rename-modal";
 
 export const Actions = ({
 	children,
@@ -23,6 +24,7 @@ export const Actions = ({
 	sideOffset,
 }: ActionProps) => {
 	const { mutate, pending } = useApiMutation(api.canvas.remove);
+	const { onOpen } = useRenameModal();
 
 	const onCopyLink = () => {
 		navigator.clipboard
@@ -54,6 +56,14 @@ export const Actions = ({
 				>
 					<Link2 className='w-4 h-4 mr-2' />
 					Copy Canvas Link
+				</DropdownMenuItem>
+
+				<DropdownMenuItem
+					className='p-3 cursor-pointer'
+					onClick={() => onOpen(id, title)}
+				>
+					<Pencil className='w-4 h-4 mr-2' />
+					Rename Canvas
 				</DropdownMenuItem>
 
 				<ConfirmModal
