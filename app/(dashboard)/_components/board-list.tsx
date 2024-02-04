@@ -11,7 +11,11 @@ import { CanvasCard } from "./canvas-card";
 import { NewCanvasButton } from "./new-canvas-button";
 
 const BoardList = ({ orgId, query }: BoardListProps) => {
-	const data = useQuery(api.canvases.get, { orgId });
+	const data = useQuery(api.canvases.get, {
+		orgId,
+		search: query.search,
+		favorites: query.favorites,
+	});
 
 	if (data === undefined) {
 		return (
