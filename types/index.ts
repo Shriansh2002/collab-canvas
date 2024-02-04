@@ -83,6 +83,12 @@ interface CanvasIdPageProps {
 	params: CanvasProps;
 }
 
+interface RoomProps {
+	children: React.ReactNode;
+	roomId: string;
+	fallback: NonNullable<React.ReactNode> | null;
+}
+
 export type {
 	LayoutProps,
 	BoardListProps,
@@ -96,4 +102,5 @@ export type {
 	ConfirmModalProps,
 	CanvasProps,
 	CanvasIdPageProps,
+	RoomProps,
 };
