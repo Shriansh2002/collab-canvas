@@ -11,7 +11,8 @@ import { Info } from "./info";
 import { Participants } from "./participants";
 import { Toolbar } from "./toolbar";
 
-import { CanvasMode, CanvasProps, CanvasState } from "@/types";
+import { CanvasProps, CanvasState } from "@/types";
+import { CanvasMode } from "@/enums";
 
 export const Canvas = ({ canvasId }: CanvasProps) => {
 	const [canvasState, setCanvasState] = useState<CanvasState>({
