@@ -1,3 +1,6 @@
+import { Side } from "@/enums";
+import { XYWH } from "./base";
+
 import { RectangleLayer } from "@/types";
 
 interface RectangleLayerProps {
@@ -7,4 +10,11 @@ interface RectangleLayerProps {
 	selectionColor?: string;
 }
 
-export type { RectangleLayerProps };
+interface SelectionBoxProps {
+	onResizeHandlePointerDown: (
+		corner: Side,
+		initialBounds: XYWH
+	) => void;
+}
+
+export type { RectangleLayerProps, SelectionBoxProps };

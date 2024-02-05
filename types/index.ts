@@ -27,7 +27,10 @@ import {
 	Layer,
 } from "./layers";
 
-import { RectangleLayerProps } from "./layers-props";
+import {
+	RectangleLayerProps,
+	SelectionBoxProps,
+} from "./layers-props";
 
 import { CanvasMode, LayerType, Side } from "@/enums";
 import { Point, XYWH, Camera, Color } from "./base";
@@ -95,4 +98,5 @@ export type {
 	Point,
 	LayerPreviewProps,
 	RectangleLayerProps,
+	SelectionBoxProps,
 };

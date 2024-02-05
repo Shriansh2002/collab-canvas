@@ -17,6 +17,7 @@ import { Participants } from "./participants";
 import { Toolbar } from "./toolbar";
 import { CursorsPresence } from "./cursors-presence";
 import { LayerPreview } from "./layer-preview";
+import { SelectionBox } from "./layers/selection-box";
 
 import {
 	Camera,
@@ -216,6 +217,9 @@ export const Canvas = ({ canvasId }: CanvasProps) => {
 							}
 						/>
 					))}
+					<SelectionBox
+						onResizeHandlePointerDown={() => {}}
+					/>
 					<CursorsPresence />
 				</g>
 			</svg>
