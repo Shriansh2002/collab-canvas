@@ -15,6 +15,7 @@ import { Info } from "./info";
 import { Participants } from "./participants";
 import { Toolbar } from "./toolbar";
 import { CursorsPresence } from "./cursors-presence";
+import { LayerPreview } from "./layer-preview";
 
 import {
 	Camera,
@@ -109,6 +110,21 @@ export const Canvas = ({ canvasId }: CanvasProps) => {
 		setMyPresence({ cursor: null });
 	}, []);
 
+	const onPointerUp = useMutation(
+		({}, e) => {
+			const point = pointerEventToCanvasPoint(e, camera);
+
+			if (canvasState.mode === CanvasMode.Inserting) {
+				insertLayer(canvasState.layerType, point);
+			} else {
+				setCanvasState({ mode: CanvasMode.None });
+			}
+
+			history.resume();
+		},
+		[camera, canvasState, history, insertLayer]
+	);
+
 	return (
 		<div className='h-full w-full relative bg-neutral-100 touch-none'>
 			<Info canvasId={canvasId} />
@@ -127,12 +143,21 @@ export const Canvas = ({ canvasId }: CanvasProps) => {
 				onWheel={onWheel}
 				onPointerMove={onPointerMove}
 				onPointerLeave={onPointerLeave}
+				onPointerUp={onPointerUp}
 			>
 				<g
 					style={{
 						transform: `translate(${camera.x}px, ${camera.y}px)`,
 					}}
 				>
+					{layerIds.map((layerId) => (
+						<LayerPreview
+							key={layerId}
+							id={layerId}
+							onLayerPointerDown={() => {}}
+							selectionColor='#000'
+						/>
+					))}
 					<CursorsPresence />
 				</g>
 			</svg>

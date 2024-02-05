@@ -108,6 +108,15 @@ interface CursorProps {
 	connectionId: number;
 }
 
+interface LayerPreviewProps {
+	id: string;
+	onLayerPointerDown: (
+		e: React.PointerEvent,
+		layerId: string
+	) => void;
+	selectionColor?: string;
+}
+
 export type {
 	LayoutProps,
 	DashboardPageProps,
@@ -126,4 +135,5 @@ export type {
 	QueryParams,
 	CanvasProps,
 	CursorProps,
+	LayerPreviewProps,
 };

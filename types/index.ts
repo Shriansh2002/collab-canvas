@@ -15,6 +15,7 @@ import type {
 	ToolButtonProps,
 	UserAvatarProps,
 	CursorProps,
+	LayerPreviewProps,
 } from "./component-props";
 
 import {
@@ -25,6 +26,8 @@ import {
 	TextLayer,
 	Layer,
 } from "./layers";
+
+import { RectangleLayerProps } from "./layers-props";
 
 import { CanvasMode, LayerType, Side } from "@/enums";
 import { Point, XYWH, Camera, Color } from "./base";
@@ -90,4 +93,6 @@ export type {
 	Color,
 	Layer,
 	Point,
+	LayerPreviewProps,
+	RectangleLayerProps,
 };
