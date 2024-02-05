@@ -1,5 +1,6 @@
-import { DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu";
 import React from "react";
+import { DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu";
+import { LucideIcon } from "lucide-react";
 
 interface LayoutProps {
 	children: React.ReactNode;
@@ -96,6 +97,118 @@ interface UserAvatarProps {
 	borderColor?: string;
 }
 
+interface ToolButtonProps {
+	label: string;
+	icon: LucideIcon;
+	onClick: () => void;
+	isActive?: boolean;
+	isDisabled?: boolean;
+}
+
+interface ToolbarProps {
+	canvasState: CanvasState;
+	setCanvasState: (newState: CanvasState) => void;
+	undo: () => void;
+	redo: () => void;
+	canUndo: boolean;
+	canRedo: boolean;
+}
+
+enum Side {
+	Top = 1,
+	Bottom = 2,
+	Left = 4,
+	Right = 8,
+}
+
+enum LayerType {
+	Rectangle,
+	Ellipse,
+	Path,
+	Text,
+	Note,
+}
+
+enum CanvasMode {
+	None,
+	Pressing,
+	SelectionNet,
+	Translating,
+	Inserting,
+	Resizing,
+	Pencil,
+}
+
+type Color = {
+	r: number;
+	g: number;
+	b: number;
+};
+
+type Point = {
+	x: number;
+	y: number;
+};
+
+type Camera = Point;
+
+type XYWH = Point & {
+	width: number;
+	height: number;
+};
+
+interface SimpleLayer extends XYWH {
+	fill: Color;
+	value?: string;
+}
+
+interface RectangleLayer extends SimpleLayer {
+	type: LayerType.Rectangle;
+}
+
+interface EllipseLayer extends SimpleLayer {
+	type: LayerType.Ellipse;
+}
+
+interface PathLayer extends SimpleLayer {
+	type: LayerType.Path;
+	points: number[][]; // [x, y]
+}
+
+interface TextLayer extends SimpleLayer {
+	type: LayerType.Text;
+}
+
+interface NoteLayer extends SimpleLayer {
+	type: LayerType.Note;
+}
+
+type CanvasState =
+	| { mode: CanvasMode.None }
+	| {
+			mode: CanvasMode.SelectionNet;
+			origin: Point;
+			current?: Point;
+	  }
+	| { mode: CanvasMode.Translating; current: Point }
+	| {
+			mode: CanvasMode.Inserting;
+			layerType:
+				| LayerType.Ellipse
+				| LayerType.Rectangle
+				| LayerType.Text
+				| LayerType.Note;
+	  }
+	| { mode: CanvasMode.Pencil }
+	| { mode: CanvasMode.Pressing; origin: Point }
+	| {
+			mode: CanvasMode.Resizing;
+			initialBounds: XYWH;
+			corner: Side;
+	  };
+
+export { Side, LayerType, CanvasMode };
+
 export type {
 	LayoutProps,
 	BoardListProps,
@@ -111,4 +224,16 @@ export type {
 	CanvasIdPageProps,
 	RoomProps,
 	UserAvatarProps,
+	ToolButtonProps,
+	CanvasState,
+	ToolbarProps,
+	Color,
+	RectangleLayer,
+	EllipseLayer,
+	PathLayer,
+	TextLayer,
+	NoteLayer,
+	Camera,
+	Point,
+	XYWH,
 };

@@ -1,17 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import {
+	useHistory,
+	useCanRedo,
+	useCanUndo,
+} from "@/liveblocks.config";
+
 import { Info } from "./info";
 import { Participants } from "./participants";
 import { Toolbar } from "./toolbar";
-import { CanvasProps } from "@/types";
+
+import { CanvasMode, CanvasProps, CanvasState } from "@/types";
 
 export const Canvas = ({ canvasId }: CanvasProps) => {
+	const [canvasState, setCanvasState] = useState<CanvasState>({
+		mode: CanvasMode.None,
+	});
+
+	const history = useHistory();
+	const canUndo = useCanUndo();
+	const canRedo = useCanRedo();
+
 	return (
 		<div className='h-full w-full relative bg-neutral-100 touch-none'>
 			<Info canvasId={canvasId} />
 			<Participants />
-			<Toolbar />
+			<Toolbar
+				canvasState={canvasState}
+				setCanvasState={setCanvasState}
+				canRedo={canRedo}
+				canUndo={canUndo}
+				redo={history.redo}
+				undo={history.undo}
+			/>
 		</div>
 	);
 };
