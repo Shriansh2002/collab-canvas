@@ -1,5 +1,5 @@
 import { Side } from "@/enums";
-import { XYWH } from "./base";
+import { Camera, Color, XYWH } from "./base";
 
 import { RectangleLayer } from "@/types";
 
@@ -17,4 +17,24 @@ interface SelectionBoxProps {
 	) => void;
 }
 
-export type { RectangleLayerProps, SelectionBoxProps };
+interface SelectionToolsProps {
+	camera: Camera;
+	setLastUsedColor: (color: Color) => void;
+}
+
+interface ColorPickerProps {
+	onChange: (color: Color) => void;
+}
+
+interface ColorButtonProps {
+	onClick: (color: Color) => void;
+	color: Color;
+}
+
+export type {
+	RectangleLayerProps,
+	SelectionBoxProps,
+	SelectionToolsProps,
+	ColorPickerProps,
+	ColorButtonProps,
+};

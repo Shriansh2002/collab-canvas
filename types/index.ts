@@ -30,6 +30,9 @@ import {
 import {
 	RectangleLayerProps,
 	SelectionBoxProps,
+	SelectionToolsProps,
+	ColorPickerProps,
+	ColorButtonProps,
 } from "./layers-props";
 
 import { CanvasMode, LayerType, Side } from "@/enums";
@@ -99,4 +102,7 @@ export type {
 	LayerPreviewProps,
 	RectangleLayerProps,
 	SelectionBoxProps,
+	SelectionToolsProps,
+	ColorPickerProps,
+	ColorButtonProps,
 };

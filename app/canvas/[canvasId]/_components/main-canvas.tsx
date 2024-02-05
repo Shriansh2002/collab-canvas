@@ -18,6 +18,7 @@ import { Toolbar } from "./toolbar";
 import { CursorsPresence } from "./cursors-presence";
 import { LayerPreview } from "./layer-preview";
 import { SelectionBox } from "./layers/selection-box";
+import { SelectionTools } from "./layers/selection-tools";
 
 import {
 	Camera,
@@ -299,6 +300,11 @@ export const Canvas = ({ canvasId }: CanvasProps) => {
 				canUndo={canUndo}
 				redo={history.redo}
 				undo={history.undo}
+			/>
+
+			<SelectionTools
+				camera={camera}
+				setLastUsedColor={setLastUsedColor}
 			/>
 
 			<svg
