@@ -1,17 +1,12 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { OrganizationSwitcher } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Star } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-
-const font = Poppins({
-	subsets: ["latin"],
-	weight: ["600"],
-});
+import { poppins } from "@/fonts";
 
 export const OrgSidebar = () => {
 	const searchParams = useSearchParams();
@@ -30,7 +25,7 @@ export const OrgSidebar = () => {
 					<span
 						className={cn(
 							"font-semibold text-2xl",
-							font.className
+							poppins.className
 						)}
 					>
 						Canvas
