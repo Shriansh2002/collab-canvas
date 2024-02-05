@@ -89,6 +89,13 @@ interface RoomProps {
 	fallback: NonNullable<React.ReactNode> | null;
 }
 
+interface UserAvatarProps {
+	src?: string;
+	name?: string;
+	fallback?: string;
+	borderColor?: string;
+}
+
 export type {
 	LayoutProps,
 	BoardListProps,
@@ -103,4 +110,5 @@ export type {
 	CanvasProps,
 	CanvasIdPageProps,
 	RoomProps,
+	UserAvatarProps,
 };
