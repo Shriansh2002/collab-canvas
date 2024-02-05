@@ -14,17 +14,20 @@ import type {
 	RoomProps,
 	ToolButtonProps,
 	UserAvatarProps,
+	CursorProps,
 } from "./component-props";
+
 import {
 	EllipseLayer,
 	NoteLayer,
 	PathLayer,
 	RectangleLayer,
 	TextLayer,
+	Layer,
 } from "./layers";
 
 import { CanvasMode, LayerType, Side } from "@/enums";
-import { Point, XYWH } from "./base";
+import { Point, XYWH, Camera, Color } from "./base";
 
 interface ToolbarProps {
 	canvasState: CanvasState;
@@ -82,4 +85,9 @@ export type {
 	ToolButtonProps,
 	ToolbarProps,
 	UserAvatarProps,
+	CursorProps,
+	Camera,
+	Color,
+	Layer,
+	Point,
 };

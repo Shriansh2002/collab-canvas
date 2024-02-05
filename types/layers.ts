@@ -1,37 +1,69 @@
 import { LayerType } from "@/enums";
-import { Color, XYWH } from "./base";
+import { Color } from "./base";
 
-interface SimpleLayer extends XYWH {
+type RectangleLayer = {
+	type: LayerType.Rectangle;
+	x: number;
+	y: number;
+	height: number;
+	width: number;
 	fill: Color;
 	value?: string;
-}
+};
 
-interface RectangleLayer extends SimpleLayer {
-	type: LayerType.Rectangle;
-}
-
-interface EllipseLayer extends SimpleLayer {
+type EllipseLayer = {
 	type: LayerType.Ellipse;
-}
+	x: number;
+	y: number;
+	height: number;
+	width: number;
+	fill: Color;
+	value?: string;
+};
 
-interface PathLayer extends SimpleLayer {
+type PathLayer = {
 	type: LayerType.Path;
-	points: number[][]; // [x, y]
-}
+	x: number;
+	y: number;
+	height: number;
+	width: number;
+	fill: Color;
+	points: number[][];
+	value?: string;
+};
 
-interface TextLayer extends SimpleLayer {
+type TextLayer = {
 	type: LayerType.Text;
-}
+	x: number;
+	y: number;
+	height: number;
+	width: number;
+	fill: Color;
+	value?: string;
+};
 
-interface NoteLayer extends SimpleLayer {
+type NoteLayer = {
 	type: LayerType.Note;
-}
+	x: number;
+	y: number;
+	height: number;
+	width: number;
+	fill: Color;
+	value?: string;
+};
+
+type Layer =
+	| RectangleLayer
+	| EllipseLayer
+	| TextLayer
+	| NoteLayer
+	| PathLayer;
 
 export type {
-	SimpleLayer,
-	RectangleLayer,
 	EllipseLayer,
-	PathLayer,
-	TextLayer,
+	Layer,
 	NoteLayer,
+	PathLayer,
+	RectangleLayer,
+	TextLayer,
 };

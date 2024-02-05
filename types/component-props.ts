@@ -104,6 +104,10 @@ interface ToolButtonProps {
 	isDisabled?: boolean;
 }
 
+interface CursorProps {
+	connectionId: number;
+}
+
 export type {
 	LayoutProps,
 	DashboardPageProps,
@@ -121,4 +125,5 @@ export type {
 	ToolButtonProps,
 	QueryParams,
 	CanvasProps,
+	CursorProps,
 };
