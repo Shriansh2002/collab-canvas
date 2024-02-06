@@ -1,6 +1,11 @@
 "use client";
 
-import React, { useCallback, useMemo, useState } from "react";
+import React, {
+	useCallback,
+	useMemo,
+	useState,
+	useEffect,
+} from "react";
 import { nanoid } from "nanoid";
 import {
 	useHistory,
@@ -17,18 +22,12 @@ import { Info } from "./info";
 import { Participants } from "./participants";
 import { Toolbar } from "./toolbar";
 import { CursorsPresence } from "./cursors-presence";
+
 import { LayerPreview } from "./layer-preview";
 import { SelectionBox } from "./layers/selection-box";
 import { SelectionTools } from "./layers/selection-tools";
+import { Path } from "./layers/path";
 
-import {
-	Camera,
-	CanvasProps,
-	CanvasState,
-	Color,
-	Point,
-} from "@/types";
-import { CanvasMode, LayerType, Side } from "@/enums";
 import {
 	colorToCss,
 	connectionIdToColor,
@@ -37,8 +36,19 @@ import {
 	pointerEventToCanvasPoint,
 	resizeBounds,
 } from "@/lib/utils";
+import { CanvasMode, LayerType, Side } from "@/enums";
+
+import {
+	Camera,
+	CanvasProps,
+	CanvasState,
+	Color,
+	Point,
+} from "@/types";
 import { XYWH } from "@/types/base";
-import { Path } from "./layers/path";
+
+import { useDisableScrollBounce } from "@/hooks/use-disable-scroll-bounce";
+import { useDeleteLayers } from "@/hooks/use-delete-layers";
 
 const MAX_LAYERS = 100;
 
@@ -57,6 +67,8 @@ export const Canvas = ({ canvasId }: CanvasProps) => {
 		g: 0,
 		b: 0,
 	});
+
+	useDisableScrollBounce();
 
 	const history = useHistory();
 	const canUndo = useCanUndo();
@@ -439,6 +451,31 @@ export const Canvas = ({ canvasId }: CanvasProps) => {
 
 		return layerIdsToColorSelection;
 	}, [selections]);
+
+	const deleteLayers = useDeleteLayers();
+
+	useEffect(() => {
+		function onKeyDown(e: KeyboardEvent) {
+			switch (e.key) {
+				case "z": {
+					if (e.ctrlKey || e.metaKey) {
+						if (e.shiftKey) {
+							history.redo();
+						} else {
+							history.undo();
+						}
+						break;
+					}
+				}
+			}
+		}
+
+		document.addEventListener("keydown", onKeyDown);
+
+		return () => {
+			document.removeEventListener("keydown", onKeyDown);
+		};
+	}, [deleteLayers, history]);
 
 	return (
 		<main className='h-full w-full relative bg-neutral-100 touch-none'>
