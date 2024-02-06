@@ -8,6 +8,8 @@ import { Rectangle } from "./layers/rectangle";
 import { Ellipse } from "./layers/ellipse";
 import { Text } from "./layers/text";
 import { Note } from "./layers/note";
+import { Path } from "./layers/path";
+import { colorToCss } from "@/lib/utils";
 
 export const LayerPreview = memo(
 	({
@@ -21,6 +23,24 @@ export const LayerPreview = memo(
 		}
 
 		switch (layer.type) {
+			case LayerType.Path:
+				return (
+					<Path
+						key={id}
+						points={layer.points}
+						onPointerDown={(e) =>
+							onLayerPointerDown(e, id)
+						}
+						stroke={selectionColor}
+						x={layer.x}
+						y={layer.y}
+						fill={
+							layer.fill
+								? colorToCss(layer.fill)
+								: "#000"
+						}
+					/>
+				);
 			case LayerType.Note:
 				return (
 					<Note
@@ -58,7 +78,7 @@ export const LayerPreview = memo(
 					/>
 				);
 			default:
-				console.warn("Unknown layer type", layer.type);
+				console.warn("Unknown layer type");
 				return null;
 		}
 	}

@@ -36,6 +36,7 @@ import {
 	EllipseLayerProps,
 	TextLayerProps,
 	NoteLayerProps,
+	PathLayerProps,
 } from "./layers-props";
 
 import { CanvasMode, LayerType, Side } from "@/enums";
@@ -111,4 +112,5 @@ export type {
 	EllipseLayerProps,
 	TextLayerProps,
 	NoteLayerProps,
+	PathLayerProps,
 };

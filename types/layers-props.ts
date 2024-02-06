@@ -1,5 +1,5 @@
 import { Side } from "@/enums";
-import { Camera, Color, XYWH } from "./base";
+import { Camera, Color, Point, XYWH } from "./base";
 
 import {
 	EllipseLayer,
@@ -57,6 +57,13 @@ interface NoteLayerProps {
 	selectionColor?: string;
 }
 
+interface PathLayerProps extends Point {
+	points: number[][];
+	fill: string;
+	onPointerDown?: (e: React.PointerEvent) => void;
+	stroke?: string;
+}
+
 export type {
 	RectangleLayerProps,
 	SelectionBoxProps,
@@ -66,4 +73,5 @@ export type {
 	EllipseLayerProps,
 	TextLayerProps,
 	NoteLayerProps,
+	PathLayerProps,
 };
