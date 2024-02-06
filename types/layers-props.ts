@@ -1,7 +1,7 @@
 import { Side } from "@/enums";
 import { Camera, Color, XYWH } from "./base";
 
-import { RectangleLayer } from "@/types";
+import { EllipseLayer, RectangleLayer } from "@/types";
 
 interface RectangleLayerProps {
 	id: string;
@@ -31,10 +31,18 @@ interface ColorButtonProps {
 	color: Color;
 }
 
+interface EllipseLayerProps {
+	id: string;
+	layer: EllipseLayer;
+	onPointerDown: (e: React.PointerEvent, id: string) => void;
+	selectionColor?: string;
+}
+
 export type {
 	RectangleLayerProps,
 	SelectionBoxProps,
 	SelectionToolsProps,
 	ColorPickerProps,
 	ColorButtonProps,
+	EllipseLayerProps,
 };

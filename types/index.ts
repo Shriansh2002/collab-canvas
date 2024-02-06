@@ -33,6 +33,7 @@ import {
 	SelectionToolsProps,
 	ColorPickerProps,
 	ColorButtonProps,
+	EllipseLayerProps,
 } from "./layers-props";
 
 import { CanvasMode, LayerType, Side } from "@/enums";
@@ -105,4 +106,5 @@ export type {
 	SelectionToolsProps,
 	ColorPickerProps,
 	ColorButtonProps,
+	EllipseLayerProps,
 };
