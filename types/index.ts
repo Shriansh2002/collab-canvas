@@ -35,6 +35,7 @@ import {
 	ColorButtonProps,
 	EllipseLayerProps,
 	TextLayerProps,
+	NoteLayerProps,
 } from "./layers-props";
 
 import { CanvasMode, LayerType, Side } from "@/enums";
@@ -109,4 +110,5 @@ export type {
 	ColorButtonProps,
 	EllipseLayerProps,
 	TextLayerProps,
+	NoteLayerProps,
 };

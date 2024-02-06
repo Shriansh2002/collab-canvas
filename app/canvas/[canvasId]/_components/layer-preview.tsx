@@ -7,6 +7,7 @@ import { LayerType } from "@/enums";
 import { Rectangle } from "./layers/rectangle";
 import { Ellipse } from "./layers/ellipse";
 import { Text } from "./layers/text";
+import { Note } from "./layers/note";
 
 export const LayerPreview = memo(
 	({
@@ -20,6 +21,15 @@ export const LayerPreview = memo(
 		}
 
 		switch (layer.type) {
+			case LayerType.Note:
+				return (
+					<Note
+						id={id}
+						layer={layer}
+						onPointerDown={onLayerPointerDown}
+						selectionColor={selectionColor}
+					/>
+				);
 			case LayerType.Text:
 				return (
 					<Text
