@@ -24,3 +24,5 @@ enum CanvasMode {
 }
 
 export { Side, LayerType, CanvasMode };
+
+// Testing
